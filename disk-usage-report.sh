@@ -23,7 +23,7 @@ for ((i=0; i<len; i++)) #Iterate over list
 do
     if [[ ${list[i]} == /dev/md*  ]] || [[ ${list[i]} == /dev/sd*  ]] || [[ ${list[i]} == /dev/root  ]] #Partial string matching for /dev drives
     then
-        if [ ${list[i+4]} \> $HD_LMT ] #Check utilisation. > needs to be escaped
+        if [ ${list[i+4]} \> $HD_LMT ] # > needs to be escaped
         then
             disk=$(basename ${list[i]})
             MESSAGE="$MESSAGE ALERT  Disk:$disk ${list[i+4]}"
