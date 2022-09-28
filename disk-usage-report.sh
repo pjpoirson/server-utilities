@@ -21,7 +21,7 @@ len=${#list[*]} #Calculate length of list
 
 for ((i=0; i<len; i++)) #Iterate over list
 do
-    if [[ ${list[i]} == /dev/sd*  ]] || [[ ${list[i]} == /dev/root  ]] #Partial string matching for /dev drives
+    if [[ ${list[i]} == /dev/md*  ]] || [[ ${list[i]} == /dev/sd*  ]] || [[ ${list[i]} == /dev/root  ]] #Partial string matching for /dev drives
     then
         if [ ${list[i+4]} \> $HD_LMT ] #Check utilisation. > needs to be escaped
         then
