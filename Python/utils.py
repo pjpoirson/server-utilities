@@ -17,7 +17,6 @@ def move_all_files(source_folder, destination_folder):
 
 def move_files_with_pattern(source_folder, destination_folder, pattern):
     files = glob.glob(source_folder + pattern)
-    # move the files with txt extension
     for file in files:
         # extract file name form file path
         file_name = os.path.basename(file)
@@ -34,3 +33,7 @@ def delete(source):
     else:
         os.rmdir(source)
     print('Deleted:', source)
+
+def mkdir(path):
+    os.mkdir(path)
+    print('Directory created:', path)
