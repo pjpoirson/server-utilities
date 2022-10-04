@@ -30,3 +30,11 @@ from os import path
 #             utils.delete(source_folder)
 #         d += 1
 #     m += 1
+
+# Browse the files and rename
+# directory = '/home/prod/Factures/2018/201801'
+# for filename in os.listdir(directory):
+#     f = os.path.join(directory, filename)
+#     if os.path.isfile(f):
+#         print(f + " => " + directory + "/" + filename[6:])
+#         utils.rename(f, directory + "/" + filename[6:])
