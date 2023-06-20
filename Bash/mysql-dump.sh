@@ -8,25 +8,26 @@
 #                   - remove old backups
 # Date: 20201217
 # Author: pjpoirson@gmail.com
-# Version: 1    
+# Version: 1.1    
 # Usage: bash mysql-dump.sh
 #=================================================================================
 
-#!/bin/bash
 date=`date +%Y%m%d-%H%M%S`
-DATABASESLIST="$(echo "show databases;" | mysql | grep -vwE "(DATABASE|Database|information_schema|mysql|performance_schema|sys)")"
+databases_list="$(echo "show databases;" | mysql | grep -vwE "(database|information_schema|mysql|performance_schema)")"
 
-for database in $DATABASESLIST;
+for database in $databases_list;
 do
-        TABLESLIST="$(echo "use $database;show tables;" | mysql | grep -vwE "(Tables_in_$database)")"
-        mkdir /my/local/backup/directory/$database-$date
-        for table in $TABLESLIST
+        dir_path=/my/local/backup/directory/
+        backup_name=$database-$date
+        tables_list="$(echo "use $database;show tables;" | mysql | grep -vwE "(Tables_in_$database)")"
+        mkdir $dir_path$backup_name
+        for table in $tables_list
         do
-                mysqldump --single-transaction -h localhost $database $table > /my/local/backup/directory/$database-$date/$table.sql;
+                mysqldump --single-transaction -h localhost $database $table > $dir_path$backup_name/$table.sql;
         done
-        cd /my/local/backup/directory/ && tar -zcvf $database-$date.tar.gz /my/local/backup/directory/$database-$date/ && rm -rf $database-$date/;
-        sshpass -p 'xxxxxxxx' rsync --progress -avz --stats -r --delete-after --verbose -e 'ssh -oStrictHostKeyChecking=no -p xxxxx' /my/local/backup/directory/$database-$date.tar.gz user@hostname.com:/the/target/directory/ > /tmp/mysql-backup-rsync.log
+        cd $dir_path && tar -zcvf $database-$date.tar.gz $dir_path$backup_name/ && rm -rf $backup_name/;
+        sshpass -p 'xxxxxxxx' rsync --progress -avz --stats -r --delete-after --verbose -e 'ssh -oStrictHostKeyChecking=no -p xxxxx' $dir_path$backup_name.tar.gz user@hostname.com:/the/target/directory/ > /tmp/mysql-backup-rsync.log
 done
 
 # Removing old backups (
-find /my/local/backup/directory/* -type f -mtime +2 -delete
+find $dir_path* -type f -mtime +2 -delete
