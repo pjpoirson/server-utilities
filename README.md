@@ -10,7 +10,11 @@
 *List TCP ports that are being listened on, and the name of each listener’s daemon and its PID*
 
 	netstat -plnt
-	
+
+*RAM monitoring*
+
+	https://github.com/BitOne/php-meminfo
+
 *Php*
 
 	service php7.4-fpm restart
