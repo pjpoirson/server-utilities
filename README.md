@@ -73,12 +73,12 @@
 	`certbot certonly --webroot --webroot-path /home/prodUD/www/ -d my-domain.com`
 	`certbot-auto certonly --manual --manual-public-ip-logging-ok --manual-auth-hook "/etc/letsencrypt/lexicon-ovh.sh create" --manual-cleanup-hook "/etc/letsencrypt/lexicon-ovh.sh delete" --preferred-challenges dns -d my-domain.com`
 
-## Vi
+## *Vi*
  - **Search replace**
 
 	`:g/str_Search/s//str_Replace/g`
 
-## Email
+## *Email*
  - **list email**
 	
 	`mailq`
