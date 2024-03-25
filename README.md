@@ -13,8 +13,13 @@
 
  - **RAM monitoring**
 
-	Lister les ip bannies:  iptables -L f2b-SSH
-	Débannir l’ip correspondante à la ligne: iptables -D f2b-SSH 2
+ 	*Lister les ip bannies :*
+
+		`iptables -L f2b-SSH`
+	
+ 	*Débannir l’ip correspondante à la ligne :*
+
+		`iptables -D f2b-SSH 2`
 
  - **Search a string in multiple files**
 
