@@ -5,6 +5,7 @@
  - **Disk Usage**
 
 	`du -hs /home/*`
+
 	`df -h`
 
  - **RAM monitoring**
@@ -28,6 +29,7 @@
  - **Delete shell history line**
 
 	`history | tail -n 10`
+
 	`history -d xxx`
 
  - **System installation date**
